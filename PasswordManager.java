@@ -140,7 +140,8 @@ public class PasswordManager {
         }
       }
     }
-    System.out.println("Exiting application");
+    System.out.println("Exiting and saving application");
+    utility.saveData(users, listOfUsernames);// Dont forget this line otherwise all saves and changes will be lost
   }
 
 
