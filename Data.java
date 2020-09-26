@@ -14,7 +14,6 @@ public class Data{
     return url;
   }
 
-
   public String getUsername(){
     return username;
   }
