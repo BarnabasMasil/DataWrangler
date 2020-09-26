@@ -1,4 +1,9 @@
-
+/**
+ * This class holds data on matching url, username, and password
+ * 
+ * @author barna
+ *
+ */
 public class Data{
   
   private String url;
@@ -22,5 +27,6 @@ public class Data{
   public String getPassword(){
     return password;
   }
+  
 
 }

@@ -1,30 +1,67 @@
 import java.io.File;
+import java.util.LinkedList;
 import java.util.Scanner;
 
+/**
+ * This class is the main class where Userinterface occurs and where altertion or changes are stored
+ * or loaded
+ * 
+ * @author barna
+ *
+ */
 public class PasswordManager {
 
   private FileUtility utility;
   private Scanner scan;
   private HashTableMap<String, User> users;
+  private LinkedList<String> listOfUsernames;
   private boolean isRunning = true;
 
   public PasswordManager() {
     utility = new FileUtility(new File("Data.txt"));
     users = new HashTableMap<>();
-    utility.loadData(users);
+    listOfUsernames = new LinkedList<>();
+    utility.loadData(users, listOfUsernames);
     scan = new Scanner(System.in);
   }
 
+  /**
+   * This method adds new user with a new username and password String into the users hashTable.
+   * duplicates of usernames are not allowed
+   * 
+   * @param username The String that contains a chosen username
+   * @param password The String that contains a chosen password
+   */
   public void addNewUser(String username, String password) {
+    for (int i = 0; i < listOfUsernames.size(); i++) {
+      if (username.equals(listOfUsernames.get(i))) {
+        System.out.println("Username already taken");
+        return;
+      }
+    }
+
     users.put(username, new User(username, password));
-
+    listOfUsernames.add(username);
   }
 
-  public void initialise() {
-
+  /**
+   * This method adds a chosen Url, username and a password and associate it with a User object
+   * 
+   * @param loginUsername The String of the initial login username to associate the url, username,
+   *                      and password to
+   * @param url           The String that contains a chosen url
+   * @param username      The String that contains a chosen username
+   * @param password      The String that contains a chosen password
+   */
+  public void addNewCredential(String loginUsername, String url, String username, String password) {
+    users.get(loginUsername).addCredential(url, username, password);
+    users.get(loginUsername).getListOfUrls().add(url);
   }
 
-  public void UserInterface() {
+  /**
+   * This method is the userInterface where the user can interact with the program
+   */
+  public void userInterface() {
     String tempName, tempPass, tempUrl;
     User tempUser = null;
     Data tempData = null;
@@ -109,7 +146,7 @@ public class PasswordManager {
 
   public static void main(String[] args) {
     PasswordManager pm = new PasswordManager();
-    pm.UserInterface();
+    pm.userInterface();
   }
 
 }
