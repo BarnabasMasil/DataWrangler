@@ -1,0 +1,15 @@
+LoginUser:Bobye
+LoginPassword:chicken
+Urls:Facebook.com Twitter.com
+Usernames:Boby Bobytwitter
+Passwords:"I love football" "Pussyslayer69" 
+stop:
+
+LoginUser:johnny123
+LoginPassword:Theboys
+Urls:Youtube.com Pornhub
+Usernames:Wnkert Wanker69
+Passwords:"djklsdljasd" "Dsadasfasg" 
+stop:
+
+end:
